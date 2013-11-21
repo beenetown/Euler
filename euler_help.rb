@@ -30,6 +30,10 @@ module EulerHelp
     number % i == 0 ? true : false
   end
 
+  def triangle_number(num)
+    (num * (num + 1)) / 2 
+  end
+
   def palindrome?
      self.to_s == self.to_s.reverse ? true : false
   end

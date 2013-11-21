@@ -87,16 +87,4 @@ module EulerHelp
     ARGV.each { |v| class_instance.go v.to_i }
     puts "-----------------------------------------------"
   end
-
-  # def largest_prime_factor_of(number)
-  #   w = [1]
-  #   x = 1
-  #   (1..number).each do |i|
-  #     if factor_of?(number,i) && Prime.prime?(i)
-  #       w << i
-  #       x += 1 
-  #     end
-  #   end
-  # end
-    
 end

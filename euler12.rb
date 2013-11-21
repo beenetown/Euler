@@ -1,16 +1,31 @@
 require_relative 'euler_help'
 include EulerHelp
 
-num = 0
-loop do
-  num += 1
-  x = triangle_number(num)
-  factors = []
-  root = Math.sqrt(x)
-  (1..root).each do |i|
-    factors << i if factor_of?(x, i)
+class EulerTwelve
+  def triangle_divisors_greater_than(number)
+    num = 0
+    factors = 0
+    until (factors * 2) > number
+      num += 1
+      tri_num = triangle_number(num)
+      factors = 0
+      root = Math.sqrt(tri_num)
+      (1..root).each do |i|
+        factors += 1 if factor_of?(tri_num, i)
+      end
+    end
+    print_answer(tri_num, factors)
   end
-  puts "#{x.add_commas} has #{factors.length * 2} factors"
-  break if (factors.length * 2) > 500
+
+  def go(value)
+    triangle_divisors_greater_than(value)
+  end
+
+  def print_answer(tri_num, factors)
+    puts "-----------------------------------------------"
+    puts "#{tri_num.add_commas} has #{factors * 2} factors."
+  end
 end
-    
+
+e12 = EulerTwelve.new
+get_ready("500", e12)

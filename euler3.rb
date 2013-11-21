@@ -4,14 +4,7 @@ include EulerHelp
 
 class EulerThree
   def largest_prime_factor_of(number)
-    w = [2]
-    x = 3
-    loop do
-      w << x if factor_of?(number,x) && Prime.prime?(x)
-      x += 2 
-      break if x >= number
-    end
-    answer = w.last
+    answer = prime_factors_of(number).sort.last
     print_answer(answer, number)
   end
 

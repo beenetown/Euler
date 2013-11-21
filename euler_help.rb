@@ -1,4 +1,5 @@
 module EulerHelp
+  include Math
 
   def add_commas
     self.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse
@@ -16,18 +17,46 @@ module EulerHelp
   end
 
   def is_prime?(number)
-    # This produces primes in a very slow, but accurate fashion.
-    # Use Prime.prime?(number) in its place.
+    # fixed 'some' slowness by making it calculate only
+    # up to the square root of number. now about 60x faster.
     divisible_by = []
-    (1..number).each do |x|
+    root = sqrt(number)
+    (1..root).each do |x|
       divisible_by << x if number % x == 0 
       break if divisible_by.length > 2
     end
-    divisible_by == [1,number] ? true : false
+    divisible_by.push number
+    number != 1 && divisible_by == [1,number] ? true : false
   end
 
    def factor_of?(number, i)
     number % i == 0 ? true : false
+  end
+
+  def factors_of(number)
+    i = 2
+    factors = []
+    while i * i < number
+      if factor_of?(number, i)
+        factors << number / i
+        factors << i
+      end
+      i += 1
+    end
+    factors
+  end
+
+    def prime_factors_of(number)
+    i = 2
+    factors = []
+    until i * i > number
+      if factor_of?(number, i)
+        factors << number / i if is_prime?(number)
+        factors << i if is_prime?(i)
+      end
+        i += 1
+    end
+    factors
   end
 
   def triangle_number(num)

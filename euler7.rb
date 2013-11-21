@@ -8,7 +8,7 @@ class EulerSeven
     primes = []
     loop do
       i += 1
-      if Prime.prime?(i) 
+      if is_prime?(i) 
         primes << i
       end
       break if primes.length == n
@@ -28,3 +28,4 @@ end
 
 e7 = EulerSeven.new
 get_ready("10001", e7)
+

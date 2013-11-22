@@ -4,7 +4,7 @@ include EulerHelp
 class EulerTwo
   def even_fib_below(n)
     even_array = []
-    fib_sequence_below(n, [1,1]).each { |v| even_array << v if v.even? }
+    fib_sequence_below(n).each { |v| even_array << v if v.even? }
     answer = even_array.reduce(:+)
     print_answer(answer, n)
   end

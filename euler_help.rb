@@ -5,10 +5,11 @@ module EulerHelp
     self.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse
   end
 
-  def fib_sequence_below(number, start_array)
+  def fib_sequence_below(number, start_array=[1,1])
     # This will return an array of fibonacci
     # numbers below number and starting with
     # the value of start_array set to an array
+    # usually [1,1]
     fib_sequence = start_array
     while fib_sequence[-2] + fib_sequence[-1] < number  
       fib_sequence << fib_sequence[-2] + fib_sequence[-1]
@@ -17,8 +18,6 @@ module EulerHelp
   end
 
   def is_prime?(number)
-    # fixed 'some' slowness by making it calculate only
-    # up to the square root of number. now about 60x faster.
     divisible_by = []
     root = sqrt(number)
     (1..root).each do |x|
@@ -35,7 +34,7 @@ module EulerHelp
 
   def factors_of(number)
     i = 2
-    factors = []
+    factors = [1, number]
     while i * i < number
       if factor_of?(number, i)
         factors << number / i
@@ -46,7 +45,7 @@ module EulerHelp
     factors
   end
 
-    def prime_factors_of(number)
+  def prime_factors_of(number)
     i = 2
     factors = []
     until i * i > number
@@ -57,6 +56,14 @@ module EulerHelp
         i += 1
     end
     factors
+  end
+
+  def factorial(number)
+    fac = 1
+    (1..number).each do |x|
+      fac *= x
+    end
+    fac
   end
 
   def triangle_number(num)

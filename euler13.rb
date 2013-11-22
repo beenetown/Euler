@@ -5,15 +5,16 @@ class EulerThirteen
   
   attr_reader :matrix
 
-  def initialize
+  def initialize(options={})
     @matrix = []
-    file = File.new('euler13.txt')
+    file = options[:file] || File.new('euler13.txt')
     file.each { |line| @matrix << line}
   end
 
   def large_sum_first_ten(array)
+    
     sum = 0
-   @matrix.length.times do |x|
+    @matrix.length.times do |x|
       sum += @matrix[x].to_i
     end
 

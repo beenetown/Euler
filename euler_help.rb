@@ -1,6 +1,39 @@
 module EulerHelp
   include Math
 
+  LEXICON = { 1 => 'one', 2 => 'two', 3 => 'three', 4 => 'four', 5 => 'five', 6 => 'six', 7 => 'seven', 8 => 'eight', 9 => 'nine', 
+            10 => 'ten', 11 => 'eleven', 12 => 'twelve', 13 => 'thirteen', 14 => 'fourteen', 15 => 'fifteen', 16 => 'sixteen', 17 => 'seventeen', 18 => 'eighteen', 19 => 'nineteen', 
+            20 => 'twenty', 30 => 'thirty', 40 => 'forty', 50 => 'fifty', 60 => 'sixty', 70 => 'seventy', 80 => 'eighty', 90 => 'ninety', 1000 => 'onethousand'}
+
+  def num_in_words(num)
+    #this produces no hyphens or spaces
+    len = num.to_s.length
+    num_array = num.to_s.split('')
+    if num < 20
+      LEXICON[num]
+    elsif len == 2
+      if num_array.last == '0'
+        LEXICON[num]
+      else
+        "#{LEXICON[num_array[0].to_i * 10]}#{LEXICON[num_array[1].to_i]}"
+      end
+    elsif len == 3
+      if num_array[1] == '0' && num_array[2] == '0'
+        "#{LEXICON[num_array[0].to_i]}hundred"
+      elsif (num_array[1].to_i * 10) + num_array[2].to_i < 20 && (num_array[1].to_i * 10) + num_array[2].to_i > 10
+        "#{LEXICON[num_array[0].to_i]}hundredand#{LEXICON[num_array[1].to_i * 10 + num_array[2].to_i]}"
+      else
+        if num_array.last == '0'
+          "#{LEXICON[num_array[0].to_i]}hundredand#{LEXICON[num_array[1].to_i * 10]}"
+        else
+          "#{LEXICON[num_array[0].to_i]}hundredand#{LEXICON[num_array[1].to_i * 10]}#{LEXICON[num_array[2].to_i]}"
+        end
+      end
+    else
+    LEXICON[1000]
+    end
+  end
+
   def add_commas
     self.to_s.reverse.gsub(/...(?=.)/,'\&,').reverse
   end

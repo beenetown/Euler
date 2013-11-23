@@ -122,6 +122,25 @@ module EulerHelp
     compare_hash
   end
 
+  def triangle_max(matrix)
+    bottom = matrix[0]
+    check = []
+
+    (matrix.length - 1).times do |a| 
+      top = matrix[a + 1]
+      (bottom.length - 1).times do |x|
+        bottom[x] > bottom[x + 1] ? 
+          check << bottom[x].to_i + top[x].to_i :
+          check << bottom[x + 1].to_i + top[x].to_i
+      end
+        bottom = check
+        check = []
+    end
+
+    answer = bottom[0]
+    print_answer(answer)
+  end
+
   def get_ready(value, class_instance)
     ARGV << value if ARGV.empty?
     ARGV.each { |v| class_instance.go v.to_i }

@@ -1,10 +1,10 @@
 require_relative 'euler_help'
 include EulerHelp
 
-matrix = []
+triangle = []
 file = File.new('euler18.txt')
-file.each { |line| matrix << line.split(' ')}
-matrix = matrix.reverse
+file.each { |line| triangle << line.split(' ')}
+triangle = triangle.reverse
 
 
 def print_answer(answer)
@@ -13,4 +13,4 @@ def print_answer(answer)
   puts "-------------------------------------------------------------"
 end
 
-triangle_max(matrix)
+print_answer triangle_max(triangle)

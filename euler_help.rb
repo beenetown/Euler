@@ -122,12 +122,12 @@ module EulerHelp
     compare_hash
   end
 
-  def triangle_max(matrix)
-    bottom = matrix[0]
+  def triangle_max(triangle)
+    bottom = triangle[0]
     check = []
 
-    (matrix.length - 1).times do |a| 
-      top = matrix[a + 1]
+    (triangle.length - 1).times do |a| 
+      top = triangle[a + 1]
       (bottom.length - 1).times do |x|
         bottom[x] > bottom[x + 1] ? 
           check << bottom[x].to_i + top[x].to_i :
@@ -138,7 +138,6 @@ module EulerHelp
     end
 
     answer = bottom[0]
-    print_answer(answer)
   end
 
   def get_ready(value, class_instance)
